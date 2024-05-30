@@ -1,0 +1,14 @@
+{
+  "name": "node-api-without-framework",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/bin/www.mjs",
+    "start:watch": "node --watch ./src/bin/www.mjs",
+    "test": "node --test ./test/e2e.test.mjs",
+    "test:watch": "node --test --watch ./test/e2e.test.mjs"
+  },
+  "dependencies": {
+    "nedb": "1.8.0"
+  }
+}
