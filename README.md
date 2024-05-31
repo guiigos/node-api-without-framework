@@ -1,6 +1,8 @@
 # Node API Without Framework :bug:
 Example of creating an API without using frameworks. This example was used in a class and is being made available for student reference.
 
+- [**front-without-framework**](https://github.com/guiigos/front-without-framework)
+
 <details>
   <summary>
     <strong>:pushpin: Menu</strong>
