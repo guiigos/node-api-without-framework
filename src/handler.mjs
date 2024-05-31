@@ -11,13 +11,20 @@ import query from "./middleware/query.mjs";
 
 async function handler(request, response) {
   response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET");
+  response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   request.details = new URL(request.url, `${request.protocol}://${request.headers.host}/`);
 
   request.db = db;
   request.body = body;
   request.query = query;
+
+  if (request.method.toLowerCase() === "options") {
+    response.writeHead(200);
+    response.end();
+    return;
+  }
 
   if (request.details.pathname.toLowerCase() === "/tasks") {
     if (request.method.toLowerCase() === "get") {
