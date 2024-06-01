@@ -10,19 +10,17 @@ const BASE_URL = "http://localhost";
 describe("Test API /tasks", () => {
   process.env.NODE_ENV = "test";
   let _app;
-  let _port;
   let _id;
 
   before(async () => {
     const server = await import("../src/bin/www.mjs");
     _app = server.app;
-    _port = server.PORT;
 
     await new Promise(resolve => _app.once('listening', resolve));
   });
 
   it("should be create new task", async () => {
-    const post = await fetch(`${BASE_URL}:${_port}/tasks`, {
+    const post = await fetch(`${BASE_URL}:${process.env.PORT}/tasks`, {
       method: "POST",
       body: JSON.stringify(task),
     });
@@ -31,7 +29,7 @@ describe("Test API /tasks", () => {
   });
 
   it("should be return all tasks", async () => {
-    const get = await fetch(`${BASE_URL}:${_port}/tasks`, {
+    const get = await fetch(`${BASE_URL}:${process.env.PORT}/tasks`, {
       method: "GET",
     });
 
@@ -46,7 +44,7 @@ describe("Test API /tasks", () => {
   });
 
   it("should be return only tasks", async () => {
-    const get = await fetch(`${BASE_URL}:${_port}/tasks?id=${_id}`, {
+    const get = await fetch(`${BASE_URL}:${process.env.PORT}/tasks?id=${_id}`, {
       method: "GET",
     });
 
@@ -61,7 +59,7 @@ describe("Test API /tasks", () => {
     const name = "NEW NAME";
     const description = "NEW DESCRIPTION";
 
-    const put = await fetch(`${BASE_URL}:${_port}/tasks?id=${_id}`, {
+    const put = await fetch(`${BASE_URL}:${process.env.PORT}/tasks?id=${_id}`, {
       method: "PUT",
       body: JSON.stringify({
         name,
@@ -71,7 +69,7 @@ describe("Test API /tasks", () => {
 
     deepEqual(put.status, 200);
 
-    const get = await fetch(`${BASE_URL}:${_port}/tasks?id=${_id}`, {
+    const get = await fetch(`${BASE_URL}:${process.env.PORT}/tasks?id=${_id}`, {
       method: "GET",
     });
 
@@ -83,13 +81,13 @@ describe("Test API /tasks", () => {
   });
 
   it("should be delete tasks", async () => {
-    const del = await fetch(`${BASE_URL}:${_port}/tasks?id=${_id}`, {
+    const del = await fetch(`${BASE_URL}:${process.env.PORT}/tasks?id=${_id}`, {
       method: "DELETE",
     });
 
     deepEqual(del.status, 200);
 
-    const get = await fetch(`${BASE_URL}:${_port}/tasks?id=${_id}`, {
+    const get = await fetch(`${BASE_URL}:${process.env.PORT}/tasks?id=${_id}`, {
       method: "GET",
     });
 
