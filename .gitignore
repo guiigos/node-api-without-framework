@@ -1,4 +1,4 @@
-# Database
+# Custom
 tasks.db
 
 # Diagnostic reports
@@ -14,6 +14,11 @@ npm-debug.log*
 
 # Build
 dist
+
+# Coverage
+coverage
+*.lcov
+.nyc_output
 
 # Dependency
 node_modules
